@@ -1,0 +1,110 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "🥷 Ninja Legends",
+   LoadingTitle = "EnchantedV4000",
+   LoadingSubtitle = "by Unknown",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/J7uYrwCNuy", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "NumberOneSubscriberMan",
+      Subtitle = "Key System",
+      Note = "Join The Discord For The Key",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"NumberOneSubscriber"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Main = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+local AutoClickActive = false -- Variable to keep track of whether AutoClick is active
+
+local Toggle = Main:CreateToggle({
+   Name = "Auto Click",
+   CurrentValue = false, -- Default to off
+   Flag = "Toggle1", -- Unique flag for saving state
+   Callback = function(Value)
+      AutoClickActive = Value -- Update the state of the toggle
+      
+      if AutoClickActive then
+         -- If toggle is on, start performing the action (swing katana)
+         local args = {
+            [1] = "swingKatana"
+         }
+
+         -- Continuously fire the event while the toggle is on
+         while AutoClickActive do
+            game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+            wait(0.1) -- Delay between swings (adjustable as needed)
+         end
+      end
+   end,
+})
+
+local Button = Main:CreateButton({
+   Name = "Buy All Sword",
+   Callback = function()
+local args = {
+    [1] = "buyAllSwords",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Main:CreateButton({
+   Name = "Buy All Belts",
+   Callback = function()
+local args = {
+    [1] = "buyAllBelts",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Main:CreateButton({
+   Name = "Buy All Jumps",
+   Callback = function()
+local args = {
+    [1] = "buyAllSkills",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Buy All Shrunkens",
+   Callback = function()
+   local args = {
+    [1] = "buyAllShurikens",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+   end,
+})
+
+local Main = Window:CreateTab("📣 Misc", 4483362458) -- Title, Image
+
+local Button = Main:CreateButton({
+   Name = "This is a Small Script Only! [ADDING MORE SOON]",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
